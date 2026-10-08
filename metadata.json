@@ -1,0 +1,8 @@
+{
+  "name": "Cafe Aldaw — A Ray of Comfort in Every Cup",
+  "description": "Cafe Aldaw — A Ray of Comfort in Every Cup. Artisan coffee, Bicol warmth, and Middle Eastern inspired oasis archways in Camalig & Legazpi City.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

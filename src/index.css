@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: "Playfair Display", Georgia, serif;
+    --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Custom Archway Utility Shapes */
+.arch-top {
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.arch-card {
+  border-top-left-radius: 2.5rem;
+  border-top-right-radius: 2.5rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+/* Sunrise Glow Animation / Transition */
+.sunrise-glow {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sunrise-glow:hover {
+  filter: brightness(1.08) contrast(1.03) saturate(1.15);
+  box-shadow: 0 20px 45px -10px rgba(184, 156, 130, 0.45), 0 0 35px 2px rgba(230, 197, 142, 0.4);
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Cafe Aldaw — QR Menu",
+  "short_name": "Cafe Aldaw",
+  "description": "Browse the Cafe Aldaw menu from your phone.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#9CAF88",
+  "background_color": "#FAF9F6"
+}
