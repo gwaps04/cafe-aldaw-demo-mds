@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { ASSET_IMAGES } from '../data/assets';
 import { ThemeMode } from '../types';
-import { Sun, Moon, Menu, X, Coffee, MapPin, Gamepad2 } from 'lucide-react';
+import { Sun, Moon, Menu, X, Coffee, MapPin, Gamepad2, ShoppingBag } from 'lucide-react';
 
 interface NavbarProps {
   themeMode: ThemeMode;
   onToggleTheme: () => void;
   onNavigate: (sectionId: string) => void;
   onPlayGame?: () => void;
+  cartItemCount?: number;
+  onOpenCart?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -15,6 +17,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleTheme,
   onNavigate,
   onPlayGame,
+  cartItemCount = 0,
+  onOpenCart,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isNight = themeMode === 'night';
@@ -134,6 +138,30 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             )}
 
+            {/* Order Tray Button */}
+            {onOpenCart && (
+              <button
+                onClick={onOpenCart}
+                type="button"
+                className={`relative inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all shadow-xs border ${
+                  cartItemCount > 0
+                    ? 'bg-[#7A8974] text-[#F7F5F0] border-[#7A8974] shadow-md hover:bg-[#63715D]'
+                    : isNight
+                    ? 'bg-[#2A3125] text-[#EED5B7] border-[#B89C82]/40 hover:bg-[#343C2E]'
+                    : 'bg-[#FAF8F5] text-[#3E453A] border-[#B89C82]/30 hover:bg-[#F2ECE3]'
+                }`}
+                title="View Order Tray"
+              >
+                <ShoppingBag className="w-3.5 h-3.5" />
+                <span>Tray</span>
+                {cartItemCount > 0 && (
+                  <span className="bg-[#B89C82] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                    {cartItemCount}
+                  </span>
+                )}
+              </button>
+            )}
+
             {/* Quick Action Button */}
             <button
               onClick={() => handleLinkClick('locations')}
@@ -151,6 +179,28 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Mobile Right Controls */}
           <div className="flex items-center gap-2 md:hidden">
+            {/* Mobile Tray Button */}
+            {onOpenCart && (
+              <button
+                onClick={onOpenCart}
+                type="button"
+                className={`relative p-2 rounded-full border transition-colors ${
+                  cartItemCount > 0
+                    ? 'bg-[#7A8974] text-white border-[#7A8974]'
+                    : isNight
+                    ? 'bg-[#2A3125] border-[#B89C82]/40 text-[#EED5B7]'
+                    : 'bg-[#EFECE4] border-[#B89C82]/30 text-[#3E453A]'
+                }`}
+                aria-label="View order tray"
+              >
+                <ShoppingBag className="w-4 h-4" />
+                {cartItemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-[#B89C82] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                    {cartItemCount}
+                  </span>
+                )}
+              </button>
+            )}
             {/* Mobile Theme Toggle */}
             <button
               onClick={onToggleTheme}

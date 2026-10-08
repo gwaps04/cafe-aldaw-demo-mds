@@ -44,3 +44,31 @@ export interface GalleryMoment {
 }
 
 export type ThemeMode = 'day' | 'night';
+
+export interface CartItem {
+  item: MenuItem;
+  quantity: number;
+  selectedOption?: 'hot' | 'ice' | '16oz' | '22oz';
+  unitPrice: number;
+}
+
+export type PaymentMethod = 'cod' | 'qr_online';
+
+export interface CustomerOrderInfo {
+  fullName: string;
+  mobileNumber: string;
+  fullAddress: string;
+  notes?: string;
+  paymentMethod: PaymentMethod;
+}
+
+export interface PlacedOrder {
+  orderId: string;
+  items: CartItem[];
+  customerInfo: CustomerOrderInfo;
+  subtotal: number;
+  deliveryFee: number;
+  total: number;
+  createdAt: string;
+  status: 'confirmed' | 'preparing';
+}

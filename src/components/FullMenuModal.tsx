@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { MENU_ITEMS, ADDONS_DATA } from '../data/menu';
 import { MenuItem, MenuCategory, ThemeMode } from '../types';
 import { MenuBadgeTag, MenuLegend } from './MenuBadges';
-import { X, Search, Sparkles, Plus, Coffee, Utensils } from 'lucide-react';
+import { X, Search, Sparkles, Plus, Coffee, Utensils, ShoppingBag } from 'lucide-react';
 
 interface FullMenuModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectItem: (item: MenuItem) => void;
+  onAddToCart?: (item: MenuItem) => void;
+  onOpenCart?: () => void;
+  cartItemCount?: number;
   themeMode: ThemeMode;
 }
 
@@ -15,6 +18,9 @@ export const FullMenuModal: React.FC<FullMenuModalProps> = ({
   isOpen,
   onClose,
   onSelectItem,
+  onAddToCart,
+  onOpenCart,
+  cartItemCount = 0,
   themeMode,
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -270,9 +276,26 @@ export const FullMenuModal: React.FC<FullMenuModalProps> = ({
                       )}
                       <span>{item.category}</span>
                     </span>
-                    <span className="font-semibold text-[#7A8974] group-hover:underline flex items-center gap-1">
-                      <Plus className="w-3 h-3" /> View Detail
-                    </span>
+
+                    <div className="flex items-center gap-2">
+                      {onAddToCart && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onAddToCart(item);
+                          }}
+                          type="button"
+                          className="px-2.5 py-1 rounded-full bg-[#7A8974]/15 hover:bg-[#7A8974] text-[#7A8974] hover:text-[#F7F5F0] transition-colors flex items-center gap-1 font-bold text-[10px]"
+                          title="Add directly to tray"
+                        >
+                          <Plus className="w-3 h-3" />
+                          <span>Add</span>
+                        </button>
+                      )}
+                      <span className="font-semibold text-[#7A8974] group-hover:underline flex items-center gap-1">
+                        View Detail
+                      </span>
+                    </div>
                   </div>
                 </div>
               );
@@ -306,13 +329,28 @@ export const FullMenuModal: React.FC<FullMenuModalProps> = ({
           <div className="italic">
             "Served over warm rice or brewed fresh upon order at both Camalig & Legazpi branches."
           </div>
-          <button
-            onClick={onClose}
-            type="button"
-            className="w-full sm:w-auto px-6 py-2 rounded-full font-semibold bg-[#7A8974] text-[#F7F5F0] hover:bg-[#63715D] transition-colors"
-          >
-            Close Menu
-          </button>
+          <div className="flex items-center gap-2.5 w-full sm:w-auto">
+            {onOpenCart && cartItemCount > 0 && (
+              <button
+                onClick={() => {
+                  onClose();
+                  onOpenCart();
+                }}
+                type="button"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-full font-bold bg-[#7A8974] text-[#F7F5F0] hover:bg-[#63715D] transition-all shadow-sm flex items-center justify-center gap-1.5"
+              >
+                <ShoppingBag className="w-3.5 h-3.5" />
+                <span>View Tray & Checkout ({cartItemCount})</span>
+              </button>
+            )}
+            <button
+              onClick={onClose}
+              type="button"
+              className="w-full sm:w-auto px-6 py-2.5 rounded-full font-semibold border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              Close Menu
+            </button>
+          </div>
         </div>
       </div>
     </div>
