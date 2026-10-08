@@ -8,7 +8,7 @@ interface ImagePlaceholderProps {
   className?: string;
   containerClassName?: string;
   shape?: 'arch' | 'card-arch' | 'rounded' | 'circle';
-  fallbackType?: 'hero' | 'food' | 'drink' | 'pastry' | 'location' | 'logo';
+  fallbackType?: 'hero' | 'food' | 'drink' | 'pastry' | 'location' | 'logo' | 'gallery';
   label?: string;
 }
 
@@ -21,7 +21,8 @@ export const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({
   fallbackType = 'food',
   label,
 }) => {
-  const customSrc = (ASSET_IMAGES as Record<string, string>)[assetKey] || '';
+  const rawSrc = (ASSET_IMAGES as Record<string, string>)[assetKey] || '';
+  const customSrc = rawSrc ? encodeURI(rawSrc) : '';
   const [imgError, setImgError] = useState(false);
 
   const getShapeClasses = () => {
@@ -165,6 +166,22 @@ export const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({
           </span>
           <span className="text-xs text-[#3E453A]/60 mt-1">
             Fresh Daily Bake
+          </span>
+        </div>
+      )}
+
+      {fallbackType === 'gallery' && (
+        <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#EFECE4] via-[#E8E2D5] to-[#DFD7C7] text-[#7A8974] p-5 text-center relative overflow-hidden">
+          {/* Subtle arch outline */}
+          <div className="absolute inset-2 rounded-t-full border border-[#B89C82]/30 pointer-events-none" />
+          <div className="w-14 h-14 rounded-full bg-[#7A8974]/15 flex items-center justify-center mb-2.5 relative z-10 border border-[#7A8974]/20 shadow-xs">
+            <Sparkles className="w-6 h-6 text-[#7A8974]" />
+          </div>
+          <span className="font-serif font-bold text-sm text-[#3E453A] relative z-10">
+            {label || 'Courtyard Moment'}
+          </span>
+          <span className="text-[11px] text-[#B89C82] font-medium mt-1 relative z-10">
+            [Add photo in assets.ts]
           </span>
         </div>
       )}

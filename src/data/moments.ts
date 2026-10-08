@@ -1,0 +1,68 @@
+import { GalleryMoment } from '../types';
+
+export const GALLERY_MOMENTS: GalleryMoment[] = [
+  {
+    id: 'moment-1',
+    title: 'Sunlit Courtyard Arches',
+    subtitle: 'CAL Courtyard, Legazpi',
+    category: 'Courtyard',
+    imageKey: 'galleryMoment1',
+    caption: 'Soft morning light filtering through our sculptural architectural archways, greeting early coffee seekers.',
+  },
+  {
+    id: 'moment-2',
+    title: 'Golden Hour Biscoff Latte',
+    subtitle: 'Signature Brew Bar',
+    category: 'Coffee',
+    imageKey: 'galleryMoment2',
+    caption: 'Velvety espresso paired with caramelized Biscoff crumbles, captured during the peak Albay golden hour.',
+  },
+  {
+    id: 'moment-3',
+    title: 'Al Fresco Garden Oasis',
+    subtitle: 'Camalig Heritage Grounds',
+    category: 'Courtyard',
+    imageKey: 'galleryMoment3',
+    caption: 'Unhurried afternoons surrounded by lush tropical greenery, gentle breeze, and terracotta pottery.',
+  },
+  {
+    id: 'moment-4',
+    title: 'The Heritage Feast Spread',
+    subtitle: 'Dining Sanctuary',
+    category: 'Feasts',
+    imageKey: 'galleryMoment4',
+    caption: 'Crispy Liempo Kare-Kare, authentic Bicol Express, and warm garlic rice shared with genuine Filipino hospitality.',
+  },
+  {
+    id: 'moment-5',
+    title: 'Quiet Corner & Soliya Nooks',
+    subtitle: 'Cozy Reading Space',
+    category: 'Ambience',
+    imageKey: 'galleryMoment5',
+    caption: 'Traditional rattan woven arch accents and natural textures providing an idyllic retreat for thinkers and creators.',
+  },
+  {
+    id: 'moment-6',
+    title: 'Artisan Barista Craft',
+    subtitle: 'Nucturna Espresso Bar',
+    category: 'Coffee',
+    imageKey: 'galleryMoment6',
+    caption: 'Single-origin highland beans meticulously ground, pulled, and poured with passion in every cup.',
+  },
+  {
+    id: 'moment-7',
+    title: 'Mount Mayon Horizon',
+    subtitle: 'Camalig View Deck',
+    category: 'Courtyard',
+    imageKey: 'galleryMoment7',
+    caption: 'A breathtaking backdrop of Mayon Volcano’s majestic cone rising serenely above morning mist.',
+  },
+  {
+    id: 'moment-8',
+    title: 'Evening Lantern Glow',
+    subtitle: 'Gabi Twilight Vibe',
+    category: 'Ambience',
+    imageKey: 'galleryMoment8',
+    caption: 'Warm amber lantern light and quiet night vibes as day transitions to starry Bicol skies.',
+  },
+];

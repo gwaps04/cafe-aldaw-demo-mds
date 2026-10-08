@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { ASSET_IMAGES } from '../data/assets';
 import { ThemeMode } from '../types';
-import { Sun, Moon, Menu, X, Coffee, MapPin } from 'lucide-react';
+import { Sun, Moon, Menu, X, Coffee, MapPin, Gamepad2 } from 'lucide-react';
 
 interface NavbarProps {
   themeMode: ThemeMode;
   onToggleTheme: () => void;
   onNavigate: (sectionId: string) => void;
+  onPlayGame?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   themeMode,
   onToggleTheme,
   onNavigate,
+  onPlayGame,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isNight = themeMode === 'night';
@@ -21,6 +23,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { label: 'Home', id: 'hero' },
     { label: 'Menu Peek', id: 'menu-peek' },
     { label: 'The Vibe', id: 'vibe' },
+    { label: 'Moments', id: 'moments' },
     { label: 'Locations', id: 'locations' },
   ];
 
@@ -46,7 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             {ASSET_IMAGES.logo ? (
               <img
-                src={ASSET_IMAGES.logo}
+                src={encodeURI(ASSET_IMAGES.logo)}
                 alt="Cafe Aldaw Logo"
                 className="w-11 h-11 rounded-full object-cover border border-[#B89C82]/30 group-hover:scale-105 transition-transform"
                 onError={(e) => {
@@ -113,6 +116,23 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
               )}
             </button>
+
+            {/* Play Game Button */}
+            {onPlayGame && (
+              <button
+                onClick={onPlayGame}
+                type="button"
+                className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all shadow-xs border ${
+                  isNight
+                    ? 'bg-[#2A3125] text-[#EED5B7] border-[#B89C82]/40 hover:bg-[#343C2E]'
+                    : 'bg-[#FAF8F5] text-[#7A8974] border-[#7A8974]/30 hover:bg-[#F2ECE3]'
+                }`}
+                title="Play Cafe Aldaw Game"
+              >
+                <Gamepad2 className="w-3.5 h-3.5 text-[#B89C82]" />
+                <span>Play Game</span>
+              </button>
+            )}
 
             {/* Quick Action Button */}
             <button
@@ -182,6 +202,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="pt-2 flex flex-col gap-3">
+            {onPlayGame && (
+              <button
+                onClick={() => {
+                  onPlayGame();
+                  setMobileMenuOpen(false);
+                }}
+                type="button"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-[#7A8974]/30 bg-[#7A8974]/10 text-[#7A8974] dark:text-[#EED5B7] font-semibold text-sm tracking-wide"
+              >
+                <Gamepad2 className="w-4 h-4 text-[#B89C82]" />
+                <span>Play Cafe Aldaw Game</span>
+              </button>
+            )}
+
             <button
               onClick={() => handleLinkClick('locations')}
               type="button"

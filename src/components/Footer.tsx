@@ -54,11 +54,12 @@ export const Footer: React.FC<FooterProps> = ({ themeMode, onScrollToTop }) => {
                 </svg>
               </a>
               <a
-                href="https://facebook.com/cafealdaw"
+                href="https://www.facebook.com/CafeAldaw"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-full bg-[#7A8974]/15 hover:bg-[#7A8974] hover:text-[#F7F5F0] transition-colors"
-                aria-label="Facebook"
+                aria-label="Facebook (Cafe Aldaw)"
+                title="Follow Cafe Aldaw on Facebook"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
@@ -95,6 +96,11 @@ export const Footer: React.FC<FooterProps> = ({ themeMode, onScrollToTop }) => {
               <li>
                 <a href="#vibe" className="hover:text-[#7A8974] transition-colors">
                   The Vibe (3 Pillars)
+                </a>
+              </li>
+              <li>
+                <a href="#moments" className="hover:text-[#7A8974] transition-colors">
+                  The Aldaw Moments
                 </a>
               </li>
               <li>
